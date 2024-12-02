@@ -3,7 +3,7 @@ import './Card.scss';
 
 interface CardProps {
   title: string;
-  year: string;
+  year: number;
   image: string;
 }
 
