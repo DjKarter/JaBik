@@ -18,17 +18,19 @@ interface ArtworksState {
   filters: FilterState;
 }
 
-const images = import.meta.glob('/src/assets/*.{jpg,jpeg,png,gif,webp}');
+const images = import.meta.glob('/public/assets/*.{jpg,jpeg,png,gif,webp}');
 
 const artworks: Artwork[] = Object.keys(images).map((path, index) => {
   const fileName = path.split('/').pop(); // Извлекаем имя файла
   const title = fileName?.split('.')[0] || ''; // Например, название может быть в формате "title_year.extension"
 
+  console.log(path);
+
   return {
     id: index,
     title: title || `Artwork ${index + 1}`, // Если не удалось извлечь название
     year: 2024, // Год без расширения
-    image: new URL(path, import.meta.url).href, // Корректируем путь
+    image: '/assets/' + title + '.jpg', // Корректируем путь
   };
 });
 
