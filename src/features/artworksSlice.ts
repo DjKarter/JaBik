@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import p1 from '../assets/download.jpg';
+import p1 from '../../../../../Downloads/JaBik-main/src/assets/download.jpg';
 
 export interface Artwork {
   id: number;
