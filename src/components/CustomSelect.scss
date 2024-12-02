@@ -1,0 +1,62 @@
+.custom-select {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  &__selected {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    cursor: pointer;
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      margin-right: 0.75rem;
+      border-radius: 4px;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      margin-right: 0.75rem;
+      border-radius: 4px;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  }
+}
