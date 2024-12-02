@@ -1,0 +1,4 @@
+* {
+    position: static; /* Сбрасываем все позиции, которые могут создавать stacking context */
+    z-index: auto; /* Устраняем конфликтующие z-index */
+}

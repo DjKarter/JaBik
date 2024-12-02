@@ -49,20 +49,6 @@ const OrderPage: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <select
-            value={selectedArtwork}
-            onChange={(e) => setSelectedArtwork(e.target.value)}
-            required
-          >
-            <option value="" disabled>
-              Выберите картину для ориентира
-            </option>
-            {artworks.map((artwork) => (
-              <option key={artwork.id} value={artwork.id}>
-                {artwork.title} ({artwork.year})
-              </option>
-            ))}
-          </select>
           <CustomSelect
             artworks={artworks}
             onSelect={(id) => setSelectedArtwork(id)}

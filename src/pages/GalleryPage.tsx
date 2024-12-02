@@ -34,12 +34,7 @@ const GalleryPage: React.FC = () => {
       </div>
       <div className="gallery">
         {filteredArtworks.map((art) => (
-          <Card
-            key={art.id}
-            image={art.image}
-            title={art.title}
-            year={art.year}
-          />
+          <Card key={art.id} index={art.id} images={filteredArtworks} />
         ))}
       </div>
     </div>

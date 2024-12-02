@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import p1 from '../assets/download.jpg';
 
 export interface Artwork {
   id: number;
@@ -19,12 +18,22 @@ interface ArtworksState {
   filters: FilterState;
 }
 
+const images = import.meta.glob('/src/assets/*.{jpg,jpeg,png,gif,webp}');
+
+const artworks: Artwork[] = Object.keys(images).map((path, index) => {
+  const fileName = path.split('/').pop(); // Извлекаем имя файла
+  const title = fileName?.split('.')[0] || ''; // Например, название может быть в формате "title_year.extension"
+
+  return {
+    id: index,
+    title: title || `Artwork ${index + 1}`, // Если не удалось извлечь название
+    year: 2024, // Год без расширения
+    image: new URL(path, import.meta.url).href, // Корректируем путь
+  };
+});
+
 const initialState: ArtworksState = {
-  list: [
-    { id: 1, title: 'Картина 1', image: p1, year: 2021 },
-    { id: 2, title: 'Картина 2', image: '/assets/art2.jpg', year: 2019 },
-    { id: 3, title: 'Картина 3', image: '/assets/art3.jpg', year: 2020 },
-  ],
+  list: artworks,
   filters: {
     search: '',
     year: '',
