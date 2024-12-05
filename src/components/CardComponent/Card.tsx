@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import './Card.scss';
-import { Artwork } from '../features/artworksSlice.ts';
-
-interface CardProps {
-  index: number;
-  images: Artwork[];
-}
+import { CardProps } from '../../shared/lib/types.ts';
 
 const Card: React.FC<CardProps> = ({ index, images }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,18 +18,20 @@ const Card: React.FC<CardProps> = ({ index, images }) => {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1,
     );
   };
+  console.log(images[0]);
+  console.log(currentIndex, index);
 
   return (
     <div className="card">
       <img
-        src={images[index].image}
-        alt={images[index].title}
+        src={images[index]?.image}
+        alt={images[index]?.title}
         className="card__image"
         onClick={openModal}
       />
       <div className="card__info">
-        <h3 className="card__title">{images[index].title}</h3>
-        <p className="card__year">{images[index].year}</p>
+        <h3 className="card__title">{images[index]?.title}</h3>
+        <p className="card__year">{images[index]?.year}</p>
       </div>
 
       {isModalOpen && (
@@ -47,8 +44,8 @@ const Card: React.FC<CardProps> = ({ index, images }) => {
               ×
             </button>
             <img
-              src={images[currentIndex].image}
-              alt={images[currentIndex].title}
+              src={images[currentIndex]?.image}
+              alt={images[currentIndex]?.title}
             />
             <button
               className="card__modal-arrow card__modal-arrow--left"

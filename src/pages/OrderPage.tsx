@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../features/store';
+import { RootState } from '../shared/store/store.ts';
 import './OrderPage.scss';
-import { CustomSelect } from '../components/CustomSelect.tsx';
+import { CustomSelect } from '../components/CustomSelectComponent/CustomSelect.tsx';
 
 const OrderPage: React.FC = () => {
   const artworks = useSelector((state: RootState) => state.artworks.list);

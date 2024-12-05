@@ -1,40 +1,22 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../features/store';
-import {
-  setSearchFilter,
-  setYearFilter,
-  selectFilteredArtworks,
-} from '../features/artworksSlice';
-import Card from '../components/Card';
+import { useSelector } from 'react-redux';
+import { RootState } from '../shared/store/store.ts';
+import { selectFilteredArtworks } from '../shared/store/artworksSlice.ts';
+import Card from '../components/CardComponent/Card.tsx';
 import './GalleryPage.scss';
+import { Filter } from '../components/FilterComponent/Filter.tsx';
 
 const GalleryPage: React.FC = () => {
-  const dispatch: AppDispatch = useDispatch();
   const filteredArtworks = useSelector((state: RootState) =>
     selectFilteredArtworks(state.artworks),
   );
-  const filters = useSelector((state: RootState) => state.artworks.filters);
 
   return (
     <div>
-      <div className="filters">
-        <input
-          type="text"
-          placeholder="Поиск по названию"
-          value={filters.search}
-          onChange={(e) => dispatch(setSearchFilter(e.target.value))}
-        />
-        <input
-          type="number"
-          placeholder="Год создания"
-          value={filters.year}
-          onChange={(e) => dispatch(setYearFilter(e.target.value))}
-        />
-      </div>
+      <Filter />
       <div className="gallery">
-        {filteredArtworks.map((art) => (
-          <Card key={art.id} index={art.id} images={filteredArtworks} />
+        {filteredArtworks.map((_art, index) => (
+          <Card key={index} index={index} images={filteredArtworks} />
         ))}
       </div>
     </div>

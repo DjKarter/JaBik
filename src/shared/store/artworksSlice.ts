@@ -1,22 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export interface Artwork {
-  id: number;
-  title: string;
-  image: string;
-  year: number;
-  description?: string;
-}
-
-interface FilterState {
-  search: string;
-  year: string; // Храним год как строку для удобства обработки пустого значения
-}
-
-interface ArtworksState {
-  list: Artwork[];
-  filters: FilterState;
-}
+import { Artwork, ArtworksState } from '../lib/types.ts';
 
 const images = import.meta.glob('/public/assets/*.{jpg,jpeg,png,gif,webp}');
 

@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { Artwork } from '../features/artworksSlice';
 import './CustomSelect.scss';
-
-interface CustomSelectProps {
-  artworks: Artwork[];
-  onSelect: (id: string) => void;
-}
+import { Artwork, CustomSelectProps } from '../../shared/lib/types.ts';
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({
   artworks,

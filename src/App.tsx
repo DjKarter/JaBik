@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar.tsx';
+import Navbar from './components/NavbarComponent/Navbar.tsx';
 import GalleryPage from './pages/GalleryPage.tsx';
 import AboutPage from './pages/AboutPage';
 import ArtworkPage from './pages/ArtworkPage';

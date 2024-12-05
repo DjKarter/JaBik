@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '../features/store';
+import { RootState } from '../shared/store/store.ts';
 import './ArtworkPage.scss';
 
 const ArtworkPage: React.FC = () => {
