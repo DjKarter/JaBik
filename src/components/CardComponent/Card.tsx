@@ -1,25 +1,48 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Card.scss';
 import { CardProps } from '../../shared/lib/types.ts';
 
 const Card: React.FC<CardProps> = ({ index, images }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(index);
+  const [tempIndex, setTempIndex] = useState(index);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  }, [images.length]);
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1,
     );
-  };
-  console.log(images[0]);
-  console.log(currentIndex, index);
+  }, [images.length]);
+
+  const handleArrowsEvent = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === 'ArrowRight') {
+        goToNext();
+      } else if (event.key === 'ArrowLeft') {
+        goToPrevious();
+      }
+    },
+    [goToNext, goToPrevious],
+  );
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setTempIndex(currentIndex);
+      window.addEventListener('keydown', handleArrowsEvent);
+    }
+    return () => {
+      if (isModalOpen) {
+        setCurrentIndex(tempIndex);
+      }
+      window.removeEventListener('keydown', handleArrowsEvent);
+    };
+  }, [handleArrowsEvent, isModalOpen]);
 
   return (
     <div className="card">
